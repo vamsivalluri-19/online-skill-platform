@@ -1730,7 +1730,9 @@ async function handleFormSubmit(e) {
       // ❌ ERROR: Handle failed registration
       const errorMsg = data.error || data.details?.[0]?.message || data.message || 'Registration failed. Please check your input.';
 
-      if (response.status === 409) {
+      if (response.status === 503) {
+        showErrorMessage('⚠️ Database temporarily unavailable. The backend needs MongoDB configured. Please wait or contact support.');
+      } else if (response.status === 409) {
         showErrorMessage(VALIDATION.messages.email.exists);
       } else if (response.status === 400) {
         showErrorMessage(errorMsg);

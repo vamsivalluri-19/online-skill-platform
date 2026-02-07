@@ -11,6 +11,16 @@ const router = express.Router();
 
 router.post("/login", async (req, res) => {
   try {
+    // Check if MongoDB is connected
+    const mongoose = require("mongoose");
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({
+        error: "Service temporarily unavailable",
+        message: "Database connection is not available. Please try again in a moment or contact support.",
+        mongoState: mongoose.connection.readyState
+      });
+    }
+
     const { error, value } = validateLoginInput(req.body);
     if (error) {
       return res.status(400).json({
@@ -89,6 +99,16 @@ router.post("/login", async (req, res) => {
 
 router.post("/register", async (req, res) => {
   try {
+    // Check if MongoDB is connected
+    const mongoose = require("mongoose");
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({
+        error: "Service temporarily unavailable",
+        message: "Database connection is not available. Please try again in a moment or contact support.",
+        mongoState: mongoose.connection.readyState
+      });
+    }
+
     const { name, email, password, confirmPassword, newsletter } = req.body;
 
     // Validation
