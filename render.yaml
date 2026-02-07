@@ -1,16 +1,20 @@
 services:
   - type: web
-    name: online-skill-platform-api
+    name: online-skill-platform
     env: node
     plan: free
+    region: oregon
     buildCommand: cd backend && npm install
     startCommand: cd backend && npm start
+    rootDir: backend
     envVars:
-      - key: MONGODB_URI
-        sync: false
-      - key: JWT_SECRET
-        sync: false
       - key: NODE_ENV
         value: production
       - key: PORT
-        value: 3000
+        value: 10000
+      - key: MONGODB_URI
+        sync: false # Set this in Render dashboard
+      - key: JWT_SECRET
+        sync: false # Set this in Render dashboard
+      - key: FRONTEND_URL
+        value: https://vamsivalluri-19.github.io
