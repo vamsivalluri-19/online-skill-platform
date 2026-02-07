@@ -1,0 +1,30 @@
+{
+  "name": "online-skill-platform",
+  "description": "Online Skill Learning Platform - Free Live Website",
+  "repository": "https://github.com/vamsivalluri-19/online-skill-platform",
+  "keywords": ["nodejs", "express", "educational", "learning-platform", "mern"],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "MONGODB_URI": {
+      "description": "MongoDB connection string",
+      "required": true
+    },
+    "JWT_SECRET": {
+      "description": "Secret key for JWT tokens",
+      "generator": "secret",
+      "required": true
+    },
+    "NODE_ENV": {
+      "value": "production",
+      "required": true
+    },
+    "PORT": {
+      "value": "3000",
+      "required": false
+    }
+  }
+}
