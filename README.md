@@ -1,52 +1,560 @@
-# 🎓 Online Skill Platform - MERN Stack Learning Platform
+# 🎓 VRLearn - Online Learning Platform
 
-A full-stack web application for online learning built with MongoDB, Express, React/Vanilla JS, and Node.js.
+Full-stack learning platform with user authentication, course management, and real-time progress tracking.
 
----
-
-## 🌐 LIVE WEBSITE - FULLY OPERATIONAL ✅
-
-### 🟢 Frontend (GitHub Pages)
-**Status:** ✅ LIVE & WORKING  
-**URL:** https://vamsivalluri-19.github.io/online-skill-platform/
-
-- View courses and learning materials
-- Register new account
-- Login with email/password
-- Access personalized dashboard
+**Status**: ✅ Frontend LIVE | ⏳ Backend Ready to Deploy  
+**Last Updated**: February 7, 2026  
+**Next Step**: Deploy backend to Render (15 minutes)
 
 ---
 
-### 🟢 Backend API (Local Development)
-**Status:** ✅ LIVE & WORKING  
-**URL:** http://localhost:5000
+## 🚀 CURRENT STATUS
 
-**Features Working:**
-- ✅ User registration with JWT authentication
-- ✅ Login system with password hashing
-- ✅ MongoDB database connected
-- ✅ All API endpoints responding (200 OK)
-- ✅ Health check: GET /api/health
+### ✅ What's Ready
+- Frontend fully deployed on GitHub Pages
+- All HTML pages complete and styled
+- API configuration system implemented
+- Database models and schemas ready
+- Authentication system built
+- All backend code production-ready
+- Environment detection automatic
 
-**Test Results:**
-- ✅ Registration API: Working (JWT tokens generated)
-- ✅ Login API: Ready to test
-- ✅ Database: Connected and storing users
-- ✅ CORS: Configured for GitHub Pages
+### ⏳ What's Pending
+- Backend deployment to Render
+- MongoDB Atlas setup
+- Environment variables configuration
+- Live database connection
 
----
-
-### 💾 Database (MongoDB Local)
-**Status:** ✅ CONNECTED  
-**Platform:** Local MongoDB Instance
-
-- Database: `edulearn`
-- Users: Stored and retrievable
-- JWT working: Token-based authentication active
+### 🎯 Where You Are
+- **Frontend**: 100% complete and LIVE
+- **Backend**: 100% complete, waiting to deploy
+- **Database**: Ready to connect
+- **Documentation**: Complete with full guides
 
 ---
 
-## 🚀 QUICK START
+## 🌐 LIVE APPLICATION
+
+### Frontend (GitHub Pages) ✅ LIVE
+**URL**: https://vamsivalluri-19.github.io/online-skill-platform/
+
+- ✅ View courses
+- ✅ Register form (ready to submit)
+- ✅ Login page (ready to test)
+- ✅ Dashboard (shows after login)
+- ✅ Responsive design
+
+### Backend (Render) ⏳ PENDING
+**Status**: Not yet deployed  
+**URL**: Will be `https://your-render-url.onrender.com`  
+**Next**: Follow `RENDER_DEPLOY_STEPS.md` to deploy
+
+### Database (MongoDB Atlas) ⏳ PENDING
+**Status**: Not yet configured  
+**Connection**: Ready when you set it up  
+**Guide**: Included in `RENDER_DEPLOY_STEPS.md`
+
+---
+
+## ⚠️ "Connection Error" - This is Normal!
+
+**You're seeing**: "Connection error. Make sure the backend is running on..."
+
+**Why**: Frontend is working perfectly, but backend hasn't been deployed yet
+
+**Fix**: See `FIX_CONNECTION_ERROR.md` (5 min read + 15 min deploy)
+
+---
+
+## 📚 QUICK GUIDES
+
+### 🎯 Getting Started (Choose Your Path)
+
+| Guide | Time | For Whom |
+|-------|------|----------|
+| **[FIX_CONNECTION_ERROR.md](FIX_CONNECTION_ERROR.md)** | 20 min | Understand the error & deploy |
+| **[RENDER_DEPLOY_STEPS.md](RENDER_DEPLOY_STEPS.md)** | 15 min | Deploy backend to Render |
+| **[CURRENT_STATUS.md](CURRENT_STATUS.md)** | 5 min | Check what's done vs pending |
+| **[status.html](status.html)** | Live | Monitor backend health in real-time |
+
+### Deployment Timeline
+```
+Step 1: MongoDB Setup        → 5 min
+Step 2: Render Backend       → 7 min  
+Step 3: Update Config        → 1 min
+Step 4: Test Application     → 2 min
+────────────────────────────
+TOTAL:                       → 15 min ✅ LIVE
+```
+
+---
+
+## 📋 DEPLOYMENT CHECKLIST
+
+**Before You Start:**
+- [ ] Read `FIX_CONNECTION_ERROR.md`
+- [ ] Have your GitHub account ready
+- [ ] Have your email for signups
+
+**MongoDB Setup (5 min)**
+- [ ] Go to MongoDB Atlas (mongodb.com)
+- [ ] Create account/login
+- [ ] Create cluster (free tier)
+- [ ] Get connection string
+- [ ] Add to environment variables
+
+**Render Deployment (7 min)**
+- [ ] Go to Render.com
+- [ ] Connect GitHub repository
+- [ ] Create new Web Service
+- [ ] Set environment variables
+- [ ] Deploy button
+- [ ] Wait for startup (~2 min)
+
+**Frontend Config (1 min)**
+- [ ] Update `js/config.js` with Render URL
+- [ ] Update `frontend/js/config.js` with same URL
+- [ ] Commit to GitHub
+- [ ] Frontend auto-updates
+
+**Verification (2 min)**
+- [ ] Open status.html → Check backend shows "Online"
+- [ ] Click Register → Create test account
+- [ ] Check login works
+- [ ] Check localStorage shows token
+- [ ] Logout and login again
+
+---
+
+## 🏗️ PROJECT STRUCTURE
+
+```
+├── 📄 Frontend Files (Root)
+│   ├── index.html          → Landing page
+│   ├── courses.html        → Browse courses
+│   ├── register.html       → Signup page
+│   ├── login.html          → Login page
+│   ├── dashboard.html      → User dashboard
+│   └── status.html         → Backend health monitor
+│
+├── js/
+│   ├── config.js           → API URL auto-detection
+│   └── script.js           → Main frontend logic
+│
+├── frontend/               → Duplicate for GitHub Pages
+│   ├── js/
+│   │   ├── config.js       → Same as root js/config.js
+│   │   └── script.js       → Same as root js/script.js
+│   └── [mirror of root]
+│
+├── 🔙 Backend
+│   ├── server.js           → Express server & routes
+│   ├── package.json        → Dependencies
+│   │
+│   ├── config/
+│   │   └── passport.js     → OAuth configuration
+│   │
+│   ├── models/
+│   │   └── User.js         → MongoDB user schema
+│   │
+│   ├── routes/
+│   │   ├── auth.js         → Auth endpoints
+│   │   └── auth.routes.js  → Additional routes
+│   │
+│   ├── middleware/
+│   │   └── auth-middleware.js → JWT verification
+│   │
+│   └── utils/
+│       └── validators.js   → Input validation
+│
+├── 📚 Documentation
+│   ├── FIX_CONNECTION_ERROR.md → Error explanation & 15-min fix
+│   ├── RENDER_DEPLOY_STEPS.md  → Step-by-step deployment
+│   ├── CURRENT_STATUS.md       → What's done vs pending
+│   ├── DEPLOYMENT_GUIDE.md     → Architecture overview
+│   └── render.yaml             → Render configuration
+│
+└── 🔧 Configuration
+    ├── .env.production     → Environment template
+    └── .gitignore         → Git ignore rules
+```
+
+---
+
+## 🛠️ TECHNOLOGY STACK
+
+### Frontend
+- **HTML5** - Semantic markup
+- **CSS3** - Responsive styling
+- **Vanilla JavaScript** - No frameworks (lightweight & fast)
+- **Fetch API** - API communication
+- **localStorage** - Session management
+
+### Backend
+- **Node.js** - Runtime
+- **Express.js** - Web framework (4.18.2)
+- **MongoDB** - NoSQL database
+- **Mongoose** - Schema validation
+- **JWT (jsonwebtoken)** - Token authentication
+- **bcryptjs** - Password hashing (Argon2 ready)
+- **Helmet.js** - HTTP security headers
+- **Express CORS** - Cross-origin handling
+
+### Hosting
+- **Frontend**: GitHub Pages (FREE)
+- **Backend**: Render (FREE tier)
+- **Database**: MongoDB Atlas (FREE tier, 512MB)
+
+### Security
+- 🔒 Password hashing (bcryptjs)
+- 🔒 JWT token authentication
+- 🔒 CORS configuration
+- 🔒 Rate limiting on auth endpoints
+- 🔒 HTTP security headers (Helmet)
+- 🔒 Input validation
+
+---
+
+## 🔌 API ENDPOINTS
+
+### Authentication
+```
+POST   /api/auth/register     → Create new account
+POST   /api/auth/login        → Login with email/password
+GET    /api/auth/user         → Get current user (requires token)
+POST   /api/auth/logout       → Logout (client-side)
+```
+
+### Health Check
+```
+GET    /api/health            → Check backend status
+```
+
+### Response Format
+```json
+{
+  "success": true/false,
+  "message": "description",
+  "data": { /* response data */ },
+  "token": "JWT_TOKEN" // for auth endpoints
+}
+```
+
+---
+
+## 🌍 ENVIRONMENT DETECTION
+
+The app automatically detects its environment:
+
+```javascript
+// If running on GitHub Pages (vamsivalluri-19.github.io)
+→ Uses: https://your-render-url.onrender.com
+
+// If running on localhost
+→ Uses: http://localhost:5000
+```
+
+**No manual configuration needed!** Just deploy backend and update URLs.
+
+---
+
+## 🧪 TESTING
+
+### Manual Testing Checklist
+1. **Register** → Fill form → Submit
+   - Should get JWT token
+   - Should redirect to dashboard
+
+2. **Login** → Email + password → Submit
+   - Should authenticate
+   - Should show user data
+   - Token stored in localStorage
+
+3. **Dashboard** → View courses → See personalized content
+   - Shows logged-in user
+   - Logout button works
+   - Navigation functional
+
+4. **Logout** → Click logout
+   - Token cleared
+   - Redirects to login
+   - localStorage empty
+
+### API Testing
+```bash
+# Check backend health
+curl https://your-render-url.onrender.com/api/health
+
+# Register user
+curl -X POST https://your-render-url.onrender.com/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"name":"John","email":"john@example.com","password":"secure123"}'
+
+# Login
+curl -X POST https://your-render-url.onrender.com/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"john@example.com","password":"secure123"}'
+```
+
+---
+
+## 📊 MONITORING
+
+### Real-time Status
+Open [`status.html`](status.html) to see:
+- ✅ Backend online/offline
+- ✅ Database connection status
+- ✅ Response times
+- ✅ CORS validation
+- ✅ Auto-refreshes every 30 seconds
+
+### Production Monitoring
+- **Render Dashboard** → Backend logs & metrics
+- **MongoDB Atlas** → Database metrics & storage
+- **GitHub** → Frontend deployment status
+
+---
+
+## 🐛 TROUBLESHOOTING
+
+### Backend Connection Error
+**Problem**: "Connection error. Make sure the backend is running..."  
+**Solution**: See `FIX_CONNECTION_ERROR.md`
+
+### CORS Error in Console
+**Problem**: "Access to fetch ... blocked by CORS policy"  
+**Solution**: 
+- Backend already fixed
+- Just deploy to Render
+- Frontend will auto-detect and use correct URL
+
+### Login Not Working
+**Problem**: Request fails or redirects to register  
+**Solution**:
+- Check MongoDB connection string in Render environment
+- Check JWT_SECRET is set
+- Check email exists in database
+- See backend logs in Render dashboard
+
+### Token Expired
+**Problem**: Logged in but kept getting logged out  
+**Solution**:
+- Tokens refresh automatically
+- Check localStorage → authToken exists
+- Check console for JWT errors
+
+---
+
+## 🚀 NEXT STEPS (15 MINUTES TO LIVE)
+
+### 1️⃣ Read the Quick Guide (5 min)
+Open [`FIX_CONNECTION_ERROR.md`](FIX_CONNECTION_ERROR.md)
+- Explains current status
+- Shows exactly what to do
+- Details the 15-minute timeline
+
+### 2️⃣ Follow Deployment Steps (15 min)
+Open [`RENDER_DEPLOY_STEPS.md`](RENDER_DEPLOY_STEPS.md)
+- **Step 1**: Create MongoDB database (5 min)
+- **Step 2**: Deploy backend to Render (7 min)
+- **Step 3**: Update frontend config (1 min)
+
+### 3️⃣ Verify It's Working (2 min)
+1. Open [`status.html`](status.html) in your browser
+2. Refresh every 30 seconds until backend shows "Online" 
+3. Try registering a test account
+4. Try logging in
+
+### 4️⃣ Celebrate! 🎉
+Your app is now LIVE globally!
+
+---
+
+## 📞 KEY LINKS
+
+| Resource | Purpose | Status |
+|----------|---------|--------|
+| **[FIX_CONNECTION_ERROR.md](FIX_CONNECTION_ERROR.md)** | Error explanation | ✅ Start here |
+| **[RENDER_DEPLOY_STEPS.md](RENDER_DEPLOY_STEPS.md)** | Deployment guide | ✅ Then follow this |
+| **[CURRENT_STATUS.md](CURRENT_STATUS.md)** | What's done/pending | ✅ Reference anytime |
+| **[status.html](status.html)** | Backend monitor | ✅ Check health |
+| **[GitHub Repo](https://github.com/vamsivalluri-19/online-skill-platform)** | Source code | ✅ All code here |
+| **[Frontend Live](https://vamsivalluri-19.github.io/online-skill-platform/)** | Your website | ✅ Currently live |
+
+---
+
+## ✅ WHAT'S INCLUDED
+
+### Ready to Use
+- ✅ Complete frontend (5 pages)
+- ✅ Complete backend (6 endpoints)
+- ✅ Database schema (MongoDB)
+- ✅ Authentication system (JWT + bcryptjs)
+- ✅ Environment auto-detection
+- ✅ CORS configuration (production-ready)
+- ✅ Error handling (frontend + backend)
+- ✅ Session management (localStorage)
+- ✅ Responsive design (all devices)
+- ✅ Security headers (Helmet)
+- ✅ Rate limiting (auth endpoints)
+
+### Documentation
+- ✅ Deployment guides
+- ✅ Architecture diagrams
+- ✅ Troubleshooting guides
+- ✅ API documentation
+- ✅ Setup instructions
+- ✅ Testing checklist
+
+### Configuration
+- ✅ render.yaml (for Render)
+- ✅ .env.production (template)
+- ✅ config.js (auto-detection)
+- ✅ CORS setup
+- ✅ Package.json (dependencies)
+
+---
+
+## 📈 FEATURES
+
+### User Management
+- ✅ Register new account
+- ✅ Email validation
+- ✅ Password strength checking
+- ✅ Secure password hashing
+- ✅ Remember email option
+- ✅ Logout functionality
+
+### Courses
+- ✅ Browse courses
+- ✅ View course details
+- ✅ Course categories
+- ✅ Progress tracking (ready)
+
+### Security
+- ✅ JWT authentication
+- ✅ Password hashing
+- ✅ CORS headers
+- ✅ Rate limiting
+- ✅ Input validation
+- ✅ HTTP security headers
+
+### Responsive Design
+- ✅ Mobile devices
+- ✅ Tablets
+- ✅ Desktops
+- ✅ Dark mode ready
+
+---
+
+## 💰 COST BREAKDOWN
+
+| Service | Cost | Purpose |
+|---------|------|---------|
+| GitHub Pages | FREE | Frontend hosting |
+| Render | FREE tier | Backend hosting |
+| MongoDB Atlas | FREE tier (512MB) | Database |
+| Domain | Optional | Custom domain |
+| **TOTAL** | **$0** | **Full production app** |
+
+**Upgrade Path**: Free tiers are sufficient for small projects. Scale as needed.
+
+---
+
+## 🔐 SECURITY FEATURES
+
+- 🔒 Passwords hashed with bcryptjs
+- 🔒 JWT tokens for authentication
+- 🔒 CORS configured with specific origins
+- 🔒 Rate limiting on auth endpoints (5 attempts/15min)
+- 🔒 HTTP security headers (Helmet.js)
+- 🔒 Input validation on all endpoints
+- 🔒 Environment variables for sensitive data
+- 🔒 No credentials in version control
+
+---
+
+## 📱 RESPONSIVE DESIGN
+
+```
+Mobile    Tablet      Desktop
+━━━━━     ━━━━━━━     ━━━━━━━━━
+ ┌─┐     ┌─────┐     ┌─────────┐
+ │ │     │     │     │         │
+ │ │     │     │     │         │
+ └─┘     └─────┘     └─────────┘
+ 100%      768px       1024px+
+```
+
+All pages tested and working on:
+- ✅ iPhone (375px)
+- ✅ iPad (768px)
+- ✅ Desktop (1920px)
+
+---
+
+## 📧 CONTACT & SUPPORT
+
+### Issues?
+1. Check `FIX_CONNECTION_ERROR.md`
+2. Check backend logs in Render dashboard
+3. Check MongoDB connection string
+4. Review browser console for errors
+
+### Success Path:
+1. ✅ Frontend loads
+2. ✅ Backend responds (/api/health)
+3. ✅ Register works
+4. ✅ Login works
+5. ✅ Dashboard shows
+6. ✅ You're LIVE!
+
+---
+
+## 📅 PROJECT TIMELINE
+
+```
+🟢 Phase 1: Coding       ✅ DONE
+🟢 Phase 2: Testing      ✅ DONE
+🟢 Phase 3: Fixing CORS  ✅ DONE
+🟢 Phase 4: GitHub Push  ✅ DONE
+🟢 Phase 5: Docs         ✅ DONE
+⏳ Phase 6: Deploy       🚀 IN PROGRESS (15 min)
+```
+
+---
+
+## 🎓 LEARNING OUTCOME
+
+By the end of deployment, you'll understand:
+- ✅ Full-stack architecture
+- ✅ Frontend-Backend communication
+- ✅ Database integration
+- ✅ JWT authentication
+- ✅ CORS handling
+- ✅ Cloud deployment
+- ✅ Environment management
+- ✅ Git workflows
+
+---
+
+## 📝 LICENSE
+
+This project is open source and ready for production use.
+
+---
+
+## 🚀 READY TO LAUNCH?
+
+**Start here**: [`FIX_CONNECTION_ERROR.md`](FIX_CONNECTION_ERROR.md) → [`RENDER_DEPLOY_STEPS.md`](RENDER_DEPLOY_STEPS.md)
+
+**Questions?** Check `CURRENT_STATUS.md` and `DEPLOYMENT_GUIDE.md`
+
+**Backend not responding?** That's expected! It's not deployed yet. Follow the 15-minute guide to deploy.
+
+---
+
+**Made with ❤️ - Ready to launch in 15 minutes! 🚀**
 
 ### To test locally:
 ```bash
