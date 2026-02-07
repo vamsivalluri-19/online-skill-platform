@@ -5,7 +5,7 @@
 
 const API_CONFIG = {
   // Production backend URL (deployed on Render)
-  production: 'https://online-skill-platform.onrender.com',
+  production: 'https://online-skill-platform-1.onrender.com',
   
   // Development backend URL (local)
   development: 'http://localhost:5000',
