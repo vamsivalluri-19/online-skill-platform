@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/auth-style.css">
   
+  <!-- API Configuration (Load before main script) -->
+  <script src="js/config.js"></script>
+  
   <!-- Inline Styles -->
   <style>
     * {
@@ -1166,7 +1169,7 @@
 // CONFIGURATION & CONSTANTS
 // ============================================
 const CONFIG = {
-  API_BASE_URL: 'http://localhost:5000',
+  API_BASE_URL: window.API_BASE_URL || 'http://localhost:5000', // Use config.js or fallback
   API_TIMEOUT: 10000, // 10 seconds
   REDIRECT_DELAY: 1500, // 1.5 seconds
   MAX_LOGIN_ATTEMPTS: 5,

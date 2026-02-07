@@ -11,6 +11,9 @@
   <!-- External Stylesheets -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- API Configuration (Load before main script) -->
+  <script src="js/config.js"></script>
+  
   <style>
     * {
       margin: 0;
@@ -1269,7 +1272,7 @@
 // CONFIGURATION & CONSTANTS
 // ============================================
 const CONFIG = {
-  API_BASE_URL: 'http://localhost:5000',
+  API_BASE_URL: window.API_BASE_URL || 'http://localhost:5000', // Use config.js or fallback
   API_TIMEOUT: 10000,
   REDIRECT_DELAY: 2000
 };
