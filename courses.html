@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses - EduLearn</title>
+
+  <link rel="stylesheet" href="./css/auth-styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="logo">
+      <i class="fas fa-graduation-cap"></i> <span>EduLearn</span>
+    </div>
+
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./courses.html" class="active">Courses</a></li>
+        <li><a href="./login.html">Login</a></li>
+        <li><a href="./register.html">Sign Up</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="page-header">
+  <div class="container">
+    <h1>Explore Our Courses</h1>
+    <p>Learn from industry experts</p>
+  </div>
+</section>
+
+<section class="courses-page">
+  <div class="container">
+    <div class="courses-grid" id="coursesContainer"></div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div id="courseModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeCourseModal()">&times;</span>
+
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+
+    <div id="modalMeta" style="font-size:13px;color:#6b7280;margin:10px 0;"></div>
+
+    <!-- VIDEO -->
+    <div id="modalVideo" style="display:none;margin:15px 0;border-radius:10px;overflow:hidden;">
+      <iframe id="courseVideo"
+        width="100%"
+        height="320"
+        src=""
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <p id="modalYoutubeLink" style="font-size:13px;color:#4f46e5;margin-bottom:12px;"></p>
+
+    <button class="btn btn-primary" onclick="enrollCourse()">Enroll Now</button>
+  </div>
+</div>
+
+<script>
+const allCourses = [
+  {
+    id: 1,
+    title: "React.js Mastery",
+    description: "Learn modern React with hooks, context, and real-world projects.",
+    videoUrl: "https://www.youtube.com/embed/bMknfKXIFA8",
+    youtubeLink: "https://www.youtube.com/watch?v=bMknfKXIFA8",
+    category: "Programming",
+    level: "Intermediate",
+    duration: "18h",
+    lessons: 120,
+    rating: 4.8
+  },
+  {
+    id: 2,
+    title: "Python for Data Science",
+    description: "Data analysis, NumPy, Pandas, visualization and ML basics.",
+    videoUrl: "https://www.youtube.com/embed/rfscVS0vtbw",
+    youtubeLink: "https://www.youtube.com/watch?v=rfscVS0vtbw",
+    category: "Data Science",
+    level: "Beginner",
+    duration: "20h",
+    lessons: 140,
+    rating: 4.7
+  },
+  {
+    id: 3,
+    title: "Full Stack MERN Development",
+    description: "MongoDB, Express, React, Node.js full stack from scratch.",
+    videoUrl: "https://www.youtube.com/embed/7CqJlxBYj-M",
+    youtubeLink: "https://www.youtube.com/watch?v=7CqJlxBYj-M",
+    category: "Programming",
+    level: "Intermediate",
+    duration: "25h",
+    lessons: 160,
+    rating: 4.8
+  },
+  {
+    id: 4,
+    title: "JavaScript Zero to Hero",
+    description: "Core JS concepts, ES6+, DOM, async programming and projects.",
+    videoUrl: "https://www.youtube.com/embed/PkZNo7MFNFg",
+    youtubeLink: "https://www.youtube.com/watch?v=PkZNo7MFNFg",
+    category: "Programming",
+    level: "Beginner",
+    duration: "30h",
+    lessons: 200,
+    rating: 4.9
+  },
+  {
+    id: 5,
+    title: "Advanced CSS & Responsive Design",
+    description: "Master flexbox, grid, animations, and responsive layouts.",
+    videoUrl: "https://www.youtube.com/embed/1Rs2ND1ryYc",
+    youtubeLink: "https://www.youtube.com/watch?v=1Rs2ND1ryYc",
+    category: "Design",
+    level: "Intermediate",
+    duration: "15h",
+    lessons: 90,
+    rating: 4.8
+  },
+  {
+    id: 6,
+    title: "Node.js & Express Crash Course",
+    description: "Build REST APIs with Node.js, Express and MongoDB.",
+    videoUrl: "https://www.youtube.com/embed/Oe421EPjeBE",
+    youtubeLink: "https://www.youtube.com/watch?v=Oe421EPjeBE",
+    category: "Programming",
+    level: "Intermediate",
+    duration: "14h",
+    lessons: 80,
+    rating: 4.7
+  },
+  {
+    id: 7,
+    title: "Git & GitHub for Developers",
+    description: "Version control, branching, merging and collaboration workflows.",
+    videoUrl: "https://www.youtube.com/embed/RGOj5yH7evk",
+    youtubeLink: "https://www.youtube.com/watch?v=RGOj5yH7evk",
+    category: "Tools",
+    level: "Beginner",
+    duration: "6h",
+    lessons: 40,
+    rating: 4.6
+  },
+  {
+    id: 8,
+    title: "SQL & Database Design",
+    description: "Relational databases, SQL queries, joins and normalization.",
+    videoUrl: "https://www.youtube.com/embed/HXV3zeQKqGY",
+    youtubeLink: "https://www.youtube.com/watch?v=HXV3zeQKqGY",
+    category: "Data",
+    level: "Beginner",
+    duration: "12h",
+    lessons: 70,
+    rating: 4.7
+  },
+  {
+    id: 9,
+    title: "Machine Learning Essentials",
+    description: "Supervised, unsupervised learning and model evaluation.",
+    videoUrl: "https://www.youtube.com/embed/GwIo3gDZCVQ",
+    youtubeLink: "https://www.youtube.com/watch?v=GwIo3gDZCVQ",
+    category: "Data Science",
+    level: "Intermediate",
+    duration: "22h",
+    lessons: 110,
+    rating: 4.8
+  },
+  {
+    id: 10,
+    title: "Deep Learning with PyTorch",
+    description: "Neural networks, CNNs, training pipelines using PyTorch.",
+    videoUrl: "https://www.youtube.com/embed/IC0_FRiX-sw",
+    youtubeLink: "https://www.youtube.com/watch?v=IC0_FRiX-sw",
+    category: "Data Science",
+    level: "Advanced",
+    duration: "26h",
+    lessons: 130,
+    rating: 4.7
+  },
+  {
+    id: 11,
+    title: "HTML & CSS Crash Course",
+    description: "Build beautiful static web pages from scratch.",
+    videoUrl: "https://www.youtube.com/embed/mU6anWqZJcc",
+    youtubeLink: "https://www.youtube.com/watch?v=mU6anWqZJcc",
+    category: "Web",
+    level: "Beginner",
+    duration: "8h",
+    lessons: 50,
+    rating: 4.6
+  },
+  {
+    id: 12,
+    title: "Tailwind CSS in Practice",
+    description: "Utility-first styling and building modern UI with Tailwind.",
+    videoUrl: "https://www.youtube.com/embed/dFgzHOX84xQ",
+    youtubeLink: "https://www.youtube.com/watch?v=dFgzHOX84xQ",
+    category: "Design",
+    level: "Intermediate",
+    duration: "10h",
+    lessons: 60,
+    rating: 4.7
+  },
+  {
+    id: 13,
+    title: "TypeScript for JavaScript Devs",
+    description: "Static typing, interfaces, generics and TS tooling.",
+    videoUrl: "https://www.youtube.com/embed/30LWjhZzg50",
+    youtubeLink: "https://www.youtube.com/watch?v=30LWjhZzg50",
+    category: "Programming",
+    level: "Intermediate",
+    duration: "9h",
+    lessons: 55,
+    rating: 4.7
+  },
+  {
+    id: 14,
+    title: "Docker & Container Basics",
+    description: "Build, run and manage containers with Docker.",
+    videoUrl: "https://www.youtube.com/embed/p28piYY_wv8",
+    youtubeLink: "https://www.youtube.com/watch?v=p28piYY_wv8",
+    category: "DevOps",
+    level: "Beginner",
+    duration: "7h",
+    lessons: 45,
+    rating: 4.6
+  },
+  {
+    id: 15,
+    title: "Kubernetes Fundamentals",
+    description: "Container orchestration, pods, services and deployments.",
+    videoUrl: "https://www.youtube.com/embed/X48VuDVv0do",
+    youtubeLink: "https://www.youtube.com/watch?v=X48VuDVv0do",
+    category: "DevOps",
+    level: "Intermediate",
+    duration: "18h",
+    lessons: 95,
+    rating: 4.7
+  },
+  {
+    id: 16,
+    title: "Linux Command Line Essentials",
+    description: "Shell basics, file system, permissions and scripting.",
+    videoUrl: "https://www.youtube.com/embed/ZtqBQ68cfJc",
+    youtubeLink: "https://www.youtube.com/watch?v=ZtqBQ68cfJc",
+    category: "System",
+    level: "Beginner",
+    duration: "6h",
+    lessons: 35,
+    rating: 4.5
+  },
+  {
+    id: 17,
+    title: "Algorithms & Data Structures",
+    description: "Big-O, arrays, trees, graphs and interview problems.",
+    videoUrl: "https://www.youtube.com/embed/8hly31xKli0",
+    youtubeLink: "https://www.youtube.com/watch?v=8hly31xKli0",
+    category: "CS Fundamentals",
+    level: "Intermediate",
+    duration: "24h",
+    lessons: 150,
+    rating: 4.8
+  },
+  {
+    id: 18,
+    title: "System Design Basics",
+    description: "Scalability, load balancing, caching and databases.",
+    videoUrl: "https://www.youtube.com/embed/m8Icp_Cid5o",
+    youtubeLink: "https://www.youtube.com/watch?v=m8Icp_Cid5o",
+    category: "Architecture",
+    level: "Advanced",
+    duration: "16h",
+    lessons: 80,
+    rating: 4.7
+  },
+  {
+    id: 19,
+    title: "Android Development with Kotlin",
+    description: "Build native Android apps using Kotlin and Android Studio.",
+    videoUrl: "https://www.youtube.com/embed/BBWyXo-3JGQ",
+    youtubeLink: "https://www.youtube.com/watch?v=BBWyXo-3JGQ",
+    category: "Mobile",
+    level: "Intermediate",
+    duration: "20h",
+    lessons: 110,
+    rating: 4.6
+  },
+  {
+    id: 20,
+    title: "iOS Development with Swift",
+    description: "Learn Swift and build iOS apps with UIKit and SwiftUI.",
+    videoUrl: "https://www.youtube.com/embed/comQ1-x2a1Q",
+    youtubeLink: "https://www.youtube.com/watch?v=comQ1-x2a1Q",
+    category: "Mobile",
+    level: "Intermediate",
+    duration: "22h",
+    lessons: 120,
+    rating: 4.6
+  },
+  {
+    id: 21,
+    title: "Flutter & Dart Bootcamp",
+    description: "Cross-platform mobile apps with Flutter and Dart.",
+    videoUrl: "https://www.youtube.com/embed/VPvVD8t02U8",
+    youtubeLink: "https://www.youtube.com/watch?v=VPvVD8t02U8",
+    category: "Mobile",
+    level: "Beginner",
+    duration: "18h",
+    lessons: 100,
+    rating: 4.7
+  },
+  {
+    id: 22,
+    title: "Angular - Complete Guide",
+    description: "Components, services, RxJS and routing with Angular.",
+    videoUrl: "https://www.youtube.com/embed/3qBXWUpoPHo",
+    youtubeLink: "https://www.youtube.com/watch?v=3qBXWUpoPHo",
+    category: "Programming",
+    level: "Intermediate",
+    duration: "23h",
+    lessons: 130,
+    rating: 4.6
+  },
+  {
+    id: 23,
+    title: "Vue.js from Scratch",
+    description: "Reactive components, Vue Router and Vuex basics.",
+    videoUrl: "https://www.youtube.com/embed/FXpIoQ_rT_c",
+    youtubeLink: "https://www.youtube.com/watch?v=FXpIoQ_rT_c",
+    category: "Programming",
+    level: "Intermediate",
+    duration: "14h",
+    lessons: 80,
+    rating: 4.6
+  },
+  {
+    id: 24,
+    title: "Next.js & Modern React",
+    description: "SSR, routing, data fetching and deployment with Next.js.",
+    videoUrl: "https://www.youtube.com/embed/Y6KDk5iyrYE",
+    youtubeLink: "https://www.youtube.com/watch?v=Y6KDk5iyrYE",
+    category: "Programming",
+    level: "Intermediate",
+    duration: "16h",
+    lessons: 90,
+    rating: 4.7
+  },
+  {
+    id: 25,
+    title: "Cyber Security Fundamentals",
+    description: "Threat models, encryption, network security basics.",
+    videoUrl: "https://www.youtube.com/embed/inWWhr5tnEA",
+    youtubeLink: "https://www.youtube.com/watch?v=inWWhr5tnEA",
+    category: "Security",
+    level: "Beginner",
+    duration: "12h",
+    lessons: 70,
+    rating: 4.6
+  },
+  {
+    id: 26,
+    title: "Ethical Hacking Basics",
+    description: "Reconnaissance, web app security and basic tools.",
+    videoUrl: "https://www.youtube.com/embed/3Kq1MIfTWCE",
+    youtubeLink: "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
+    category: "Security",
+    level: "Intermediate",
+    duration: "16h",
+    lessons: 90,
+    rating: 4.6
+  },
+  {
+    id: 27,
+    title: "UI/UX Design Fundamentals",
+    description: "Design thinking, wireframes, and user testing.",
+    videoUrl: "https://www.youtube.com/embed/c9Wg6Cb_YlU",
+    youtubeLink: "https://www.youtube.com/watch?v=c9Wg6Cb_YlU",
+    category: "Design",
+    level: "Beginner",
+    duration: "10h",
+    lessons: 60,
+    rating: 4.7
+  },
+  {
+    id: 28,
+    title: "Digital Marketing Masterclass",
+    description: "SEO, social media, email marketing and analytics.",
+    videoUrl: "https://www.youtube.com/embed/8OBfr46Y0cQ",
+    youtubeLink: "https://www.youtube.com/watch?v=8OBfr46Y0cQ",
+    category: "Marketing",
+    level: "Intermediate",
+    duration: "18h",
+    lessons: 95,
+    rating: 4.7
+  },
+  {
+    id: 29,
+    title: "Business & Entrepreneurship 101",
+    description: "Business models, validation and pitching fundamentals.",
+    videoUrl: "https://www.youtube.com/embed/Zs6lH7UuK5Q",
+    youtubeLink: "https://www.youtube.com/watch?v=Zs6lH7UuK5Q",
+    category: "Business",
+    level: "Beginner",
+    duration: "14h",
+    lessons: 85,
+    rating: 4.5
+  },
+  {
+    id: 30,
+    title: "AWS Cloud Practitioner Essentials",
+    description: "Core AWS services, billing and cloud architecture basics.",
+    videoUrl: "https://www.youtube.com/embed/3hLmDS179YE",
+    youtubeLink: "https://www.youtube.com/watch?v=3hLmDS179YE",
+    category: "Cloud",
+    level: "Beginner",
+    duration: "20h",
+    lessons: 110,
+    rating: 4.7
+  }
+];
+
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("coursesContainer");
+
+  container.innerHTML = allCourses.map(course => `
+    <div class="course-card">
+      <h3>${course.title}</h3>
+      <p>${course.description}</p>
+      <p style="font-size:13px;color:#6b7280;margin:6px 0;">
+        <i class="fas fa-layer-group"></i> ${course.category} •
+        <i class="fas fa-signal"></i> ${course.level} •
+        <i class="fas fa-clock"></i> ${course.duration} •
+        <i class="fas fa-list"></i> ${course.lessons} lessons •
+        <i class="fas fa-star" style="color:#f59e0b;"></i> ${course.rating}
+      </p>
+      <button class="btn btn-course" onclick="openCourseModal(${course.id})">View Details</button>
+      <button class="btn btn-secondary" onclick="openCourseModal(${course.id}, true)">▶ Preview</button>
+    </div>
+  `).join("");
+});
+
+function openCourseModal(id, playVideo = false) {
+  const course = allCourses.find(c => c.id === id);
+  if (!course) return;
+
+  document.getElementById("modalTitle").textContent = course.title;
+  document.getElementById("modalDescription").textContent = course.description;
+
+  const meta = `
+    <span><i class="fas fa-layer-group"></i> ${course.category}</span> •
+    <span><i class="fas fa-signal"></i> ${course.level}</span> •
+    <span><i class="fas fa-clock"></i> ${course.duration}</span> •
+    <span><i class="fas fa-list"></i> ${course.lessons} lessons</span> •
+    <span><i class="fas fa-star" style="color:#f59e0b;"></i> ${course.rating}</span>
+  `;
+  document.getElementById("modalMeta").innerHTML = meta;
+
+  const videoBox = document.getElementById("modalVideo");
+  const iframe = document.getElementById("courseVideo");
+  const linkP = document.getElementById("modalYoutubeLink");
+
+  if (playVideo && course.videoUrl) {
+    videoBox.style.display = "block";
+    iframe.src = course.videoUrl + "?autoplay=1";
+    linkP.innerHTML = `Watch this preview on <a href="${course.youtubeLink}" target="_blank" style="color:#4f46e5;font-weight:600;">YouTube</a>.`;
+  } else {
+    videoBox.style.display = "none";
+    iframe.src = "";
+    linkP.textContent = "";
+  }
+
+  document.getElementById("courseModal").style.display = "block";
+}
+
+function closeCourseModal() {
+  document.getElementById("courseModal").style.display = "none";
+  document.getElementById("courseVideo").src = "";
+}
+
+function enrollCourse() {
+  window.location.href = "./register.html";
+}
+</script>
+
+</body>
+</html>

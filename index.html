@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Online Learning Platform - Build your future with professional courses">
+  <meta name="keywords" content="online courses, learning, skill development, education">
+  <title>Online Learning Platform | Master New Skills</title>
+  <link rel="stylesheet" href="css/auth-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation Header -->
+<header class="header">
+  <div class="container">
+    <div class="logo">
+      <i class="fas fa-graduation-cap"></i>
+      <span>EduLearn</span>
+    </div>
+    
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      
+      <div class="nav-auth">
+        <a href="login.html" class="btn-login">Login</a>
+        <a href="register.html" class="btn-register">Sign Up</a>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="container hero-content">
+    <div class="hero-text">
+      <h1>Learn Skills Online, Anytime, Anywhere</h1>
+      <p>Build your future with world-class online courses from industry experts. Start learning today and unlock endless opportunities.</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="window.location.href='courses.html'">
+          <i class="fas fa-play-circle"></i> Browse Courses
+        </button>
+        <button class="btn btn-secondary" onclick="window.location.href='#features'">
+          <i class="fas fa-info-circle"></i> Learn More
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <h3>50K+</h3>
+          <p>Active Students</p>
+        </div>
+        <div class="stat">
+          <h3>200+</h3>
+          <p>Courses Available</p>
+        </div>
+        <div class="stat">
+          <h3>4.8★</h3>
+          <p>Average Rating</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image">
+      <i class="fas fa-laptop-code"></i>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="features">
+  <div class="container">
+    <h2>Why Choose Us?</h2>
+    <p class="section-subtitle">Everything you need to succeed in your learning journey</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-users"></i>
+        <h3>Expert Instructors</h3>
+        <p>Learn from industry professionals with years of experience and proven track records.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fas fa-certificate"></i>
+        <h3>Certifications</h3>
+        <p>Earn recognized certificates upon course completion to boost your resume.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fas fa-video"></i>
+        <h3>High-Quality Videos</h3>
+        <p>Access HD video lectures with playback speed control and offline download options.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fas fa-tasks"></i>
+        <h3>Interactive Assignments</h3>
+        <p>Practice with real-world projects and coding challenges to reinforce learning.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fas fa-headset"></i>
+        <h3>24/7 Support</h3>
+        <p>Get help anytime with our dedicated support team and active community forums.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Mobile Learning</h3>
+        <p>Learn on the go with our fully responsive platform compatible with all devices.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Categories Section -->
+<section id="categories" class="categories">
+  <div class="container">
+    <h2>Explore Categories</h2>
+    <p class="section-subtitle">Find courses in your favorite subjects</p>
+    
+    <div class="categories-grid">
+      <div class="category-card">
+        <i class="fas fa-code"></i>
+        <h3>Web Development</h3>
+        <p>120+ Courses</p>
+      </div>
+
+      <div class="category-card">
+        <i class="fas fa-brain"></i>
+        <h3>Machine Learning</h3>
+        <p>85+ Courses</p>
+      </div>
+
+      <div class="category-card">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Mobile Apps</h3>
+        <p>95+ Courses</p>
+      </div>
+
+      <div class="category-card">
+        <i class="fas fa-paint-brush"></i>
+        <h3>Design & UX</h3>
+        <p>110+ Courses</p>
+      </div>
+
+      <div class="category-card">
+        <i class="fas fa-chart-line"></i>
+        <h3>Data Science</h3>
+        <p>75+ Courses</p>
+      </div>
+
+      <div class="category-card">
+        <i class="fas fa-pencil-alt"></i>
+        <h3>Writing & Content</h3>
+        <p>65+ Courses</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Courses Section -->
+<section id="courses" class="courses">
+  <div class="container">
+    <h2>Featured Courses</h2>
+    <p class="section-subtitle">Start learning with our most popular courses</p>
+    
+    <div class="courses-grid">
+      <!-- Course Card 1 -->
+      <div class="course-card">
+        <div class="course-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+          <i class="fas fa-react"></i>
+        </div>
+        <div class="course-content">
+          <h3>React.js Mastery</h3>
+          <p>Learn modern React with hooks, context API, and advanced patterns.</p>
+          <div class="course-meta">
+            <span class="level">Intermediate</span>
+            <span class="duration"><i class="fas fa-clock"></i> 40 Hours</span>
+          </div>
+          <div class="course-rating">
+            <span class="stars">★★★★★</span>
+            <span class="reviews">(245 reviews)</span>
+          </div>
+          <div class="course-price">
+            <span class="price">₹4,999</span>
+            <span class="original">₹9,999</span>
+          </div>
+          <button class="btn btn-course" onclick="window.location.href='courses.html'">Enroll Now</button>
+        </div>
+      </div>
+
+      <!-- Course Card 2 -->
+      <div class="course-card">
+        <div class="course-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+          <i class="fas fa-python"></i>
+        </div>
+        <div class="course-content">
+          <h3>Python for Data Science</h3>
+          <p>Master Python with pandas, NumPy, and data visualization techniques.</p>
+          <div class="course-meta">
+            <span class="level">Beginner</span>
+            <span class="duration"><i class="fas fa-clock"></i> 35 Hours</span>
+          </div>
+          <div class="course-rating">
+            <span class="stars">★★★★★</span>
+            <span class="reviews">(312 reviews)</span>
+          </div>
+          <div class="course-price">
+            <span class="price">₹3,999</span>
+            <span class="original">₹8,999</span>
+          </div>
+          <button class="btn btn-course" onclick="window.location.href='courses.html'">Enroll Now</button>
+        </div>
+      </div>
+
+      <!-- Course Card 3 -->
+      <div class="course-card">
+        <div class="course-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+          <i class="fas fa-database"></i>
+        </div>
+        <div class="course-content">
+          <h3>Full Stack MERN Development</h3>
+          <p>Build complete web applications with MongoDB, Express, React & Node.js.</p>
+          <div class="course-meta">
+            <span class="level">Advanced</span>
+            <span class="duration"><i class="fas fa-clock"></i> 60 Hours</span>
+          </div>
+          <div class="course-rating">
+            <span class="stars">★★★★★</span>
+            <span class="reviews">(189 reviews)</span>
+          </div>
+          <div class="course-price">
+            <span class="price">₹5,999</span>
+            <span class="original">₹11,999</span>
+          </div>
+          <button class="btn btn-course" onclick="window.location.href='courses.html'">Enroll Now</button>
+        </div>
+      </div>
+
+      <!-- Course Card 4 -->
+      <div class="course-card">
+        <div class="course-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <div class="course-content">
+          <h3>React Native Mobile Dev</h3>
+          <p>Create cross-platform mobile apps with React Native and JavaScript.</p>
+          <div class="course-meta">
+            <span class="level">Intermediate</span>
+            <span class="duration"><i class="fas fa-clock"></i> 50 Hours</span>
+          </div>
+          <div class="course-rating">
+            <span class="stars">★★★★☆</span>
+            <span class="reviews">(156 reviews)</span>
+          </div>
+          <div class="course-price">
+            <span class="price">₹4,499</span>
+            <span class="original">₹9,499</span>
+          </div>
+          <button class="btn btn-course" onclick="window.location.href='courses.html'">Enroll Now</button>
+        </div>
+      </div>
+
+      <!-- Course Card 5 -->
+      <div class="course-card">
+        <div class="course-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+          <i class="fas fa-palette"></i>
+        </div>
+        <div class="course-content">
+          <h3>UI/UX Design Fundamentals</h3>
+          <p>Learn design principles, wireframing, and prototyping with industry tools.</p>
+          <div class="course-meta">
+            <span class="level">Beginner</span>
+            <span class="duration"><i class="fas fa-clock"></i> 30 Hours</span>
+          </div>
+          <div class="course-rating">
+            <span class="stars">★★★★★</span>
+            <span class="reviews">(234 reviews)</span>
+          </div>
+          <div class="course-price">
+            <span class="price">₹3,499</span>
+            <span class="original">₹7,999</span>
+          </div>
+          <button class="btn btn-course" onclick="window.location.href='courses.html'">Enroll Now</button>
+        </div>
+      </div>
+
+      <!-- Course Card 6 -->
+      <div class="course-card">
+        <div class="course-image" style="background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="course-content">
+          <h3>Cybersecurity Essentials</h3>
+          <p>Understand security fundamentals, encryption, and ethical hacking basics.</p>
+          <div class="course-meta">
+            <span class="level">Intermediate</span>
+            <span class="duration"><i class="fas fa-clock"></i> 45 Hours</span>
+          </div>
+          <div class="course-rating">
+            <span class="stars">★★★★★</span>
+            <span class="reviews">(198 reviews)</span>
+          </div>
+          <div class="course-price">
+            <span class="price">₹4,799</span>
+            <span class="original">₹9,799</span>
+          </div>
+          <button class="btn btn-course" onclick="window.location.href='courses.html'">Enroll Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="view-all">
+      <button class="btn btn-primary" onclick="window.location.href='courses.html'">View All Courses</button>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="testimonials">
+  <div class="container">
+    <h2>Student Success Stories</h2>
+    <p class="section-subtitle">Hear from our satisfied learners</p>
+    
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"The React course was incredibly comprehensive and easy to follow. I landed my dream job as a frontend developer within 2 months!"</p>
+        <div class="testimonial-author">
+          <img src="https://via.placeholder.com/50" alt="Priya">
+          <div>
+            <h4>Priya Sharma</h4>
+            <p>Frontend Developer</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"The MERN stack course provided real-world projects that I added directly to my portfolio. Highly recommended for beginners!"</p>
+        <div class="testimonial-author">
+          <img src="https://via.placeholder.com/50" alt="Rahul">
+          <div>
+            <h4>Rahul Patel</h4>
+            <p>Full Stack Developer</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Exceptional content quality and supportive instructors. This platform helped me transition from QA to Development."</p>
+        <div class="testimonial-author">
+          <img src="https://via.placeholder.com/50" alt="Anjali">
+          <div>
+            <h4>Anjali Verma</h4>
+            <p>Software Engineer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+  <div class="container">
+    <h2>Ready to Start Learning?</h2>
+    <p>Join thousands of students already learning on EduLearn. Sign up today and get 30% off your first course!</p>
+    <button class="btn btn-primary" onclick="window.location.href='register.html'">Sign Up Now</button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="contact" class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>About EduLearn</h3>
+        <p>Empowering learners worldwide with quality education and industry-relevant skills.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#categories">Categories</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Support</h3>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <p><i class="fas fa-envelope"></i> support@edulearn.com</p>
+        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Education St, Tech City, TC 12345</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 EduLearn. All rights reserved. | Designed with <i class="fas fa-heart"></i> by Your Team</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile Menu Script -->
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+  }
+
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
