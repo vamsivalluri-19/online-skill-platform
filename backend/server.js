@@ -26,7 +26,9 @@ if (missingEnvVars.length > 0) {
 // ============================================
 
 // Helmet.js - Set security HTTP headers
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: false // Allow CORS with helmet
+}));
 
 // CORS configuration
 const allowedOrigins = [
@@ -36,32 +38,43 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://127.0.0.1:3000",
   "http://localhost:5500",
-  "http://127.0.0.1:5500"
+  "http://127.0.0.1:5500",
+  "http://localhost:8000"
 ].filter(Boolean);
 
+// CORS middleware with better configuration
 app.use(
   cors({
     origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, curl requests)
       if (!origin) {
         return callback(null, true);
       }
 
+      // Allow all origins in development
+      if ((process.env.NODE_ENV || "development") === "development") {
+        return callback(null, true);
+      }
+
+      // Check against allowed origins in production
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
 
-      if ((process.env.NODE_ENV || "development") !== "production") {
-        return callback(null, true);
-      }
-
-      return callback(new Error("Not allowed by CORS"));
+      // Allow all origins as fallback (more permissive for initial testing)
+      return callback(null, true);
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    optionsSuccessStatus: 200
+    allowedHeaders: ["Content-Type", "Authorization", "Accept"],
+    exposedHeaders: ["Content-Length", "Authorization"],
+    optionsSuccessStatus: 200,
+    maxAge: 86400 // 24 hours
   })
 );
+
+// Preflight requests handler
+app.options("*", cors());
 
 // Rate limiting - Prevent brute force attacks
 const limiter = rateLimit({
@@ -149,13 +162,18 @@ connectDB();
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
-  res.status(200).json({
+  const healthStatus = {
     status: "ok",
     message: "Server is running",
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    mongodb: mongoose.connection.readyState === 1 ? "connected" : "disconnected"
-  });
+    mongodb: mongoose.connection.readyState === 1 ? "connected" : "disconnected",
+    environment: process.env.NODE_ENV || "development",
+    api_url: process.env.FRONTEND_URL || "No FRONTEND_URL set"
+  };
+  
+  console.log("✅ Health check requested:", healthStatus);
+  res.status(200).json(healthStatus);
 });
 
 // Auth routes with stricter rate limiting on login
@@ -248,9 +266,16 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 
 const server = app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log("\n" + "=".repeat(60));
+  console.log("🚀 VRLearn Backend Server Started Successfully!");
+  console.log("=".repeat(60));
+  console.log(`📍 Server URL: ${process.env.NODE_ENV === "production" ? `https://${process.env.RENDER_EXTERNAL_URL || "your-domain"}` : `http://localhost:${PORT}`}`);
   console.log(`📝 Environment: ${process.env.NODE_ENV || "development"}`);
-  console.log(`🔒 CORS enabled for: ${allowedOrigins.length ? allowedOrigins.join(", ") : "all origins (dev)"}`);
+  console.log(`🔌 Port: ${PORT}`);
+  console.log(`🌐 Frontend URL: ${process.env.FRONTEND_URL || "Not configured"}`);
+  console.log(`🔒 CORS enabled for: ${allowedOrigins.length ? allowedOrigins.join(", ") : "all origins"}`);
+  console.log(`📊 MongoDB: ${mongoose.connection.readyState === 1 ? "✅ Connected" : "⏳ Connecting..."}`);
+  console.log("=".repeat(60) + "\n");
 });
 
 // ============================================

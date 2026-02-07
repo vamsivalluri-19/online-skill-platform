@@ -2260,10 +2260,18 @@ function deleteAccount() {
 }
 
 function logoutUser() {
+  // Clear all auth data
   localStorage.removeItem('authToken');
+  localStorage.removeItem('tokenTimestamp');
   localStorage.removeItem('user');
   localStorage.removeItem('userId');
-  window.location.href = 'login-enhanced.html';
+  localStorage.removeItem('rememberedEmail');
+  
+  // Show logout message
+  console.log('👋 User logged out successfully');
+  
+  // Redirect to login page
+  window.location.href = 'login.html';
 }
 
 /* THEME HANDLING */
