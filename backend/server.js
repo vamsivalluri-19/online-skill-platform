@@ -13,7 +13,7 @@ const app = express();
 // VALIDATION - Check required environment variables
 // ============================================
 const isProduction = (process.env.NODE_ENV || "development") === "production";
-const requiredEnvVars = isProduction ? ["MONGODB_URI", "JWT_SECRET"] : [];
+const requiredEnvVars = isProduction ? ["JWT_SECRET"] : []; // MongoDB optional for now
 const missingEnvVars = requiredEnvVars.filter(envVar => !process.env[envVar]);
 
 if (missingEnvVars.length > 0) {
