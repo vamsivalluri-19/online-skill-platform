@@ -1309,7 +1309,7 @@ const VALIDATION = {
     },
     general: {
       networkError: 'Connection error. Make sure the backend is running on ' + CONFIG.API_BASE_URL,
-      timeout: 'Request timeout. Please check your connection and try again.',
+      timeout: 'The server is taking longer than expected. This is normal on the first request (free hosting wakes up from sleep). Please wait and try again in a moment.',
       serverError: 'Server error. Please try again later.',
       unexpectedError: 'An unexpected error occurred. Please try again.'
     }
@@ -1653,6 +1653,27 @@ async function handleFormSubmit(e) {
   updateButtonState(true);
 
   try {
+    // First, wake up the backend if needed (Render free tier spins down after inactivity)
+    console.log('Checking backend availability...');
+    const submitBtn = document.getElementById('submitBtn');
+    const originalText = submitBtn.innerHTML;
+    
+    // Show "waking up backend" message
+    submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Waking up server...';
+    
+    try {
+      const healthCheck = await fetch(`${CONFIG.API_BASE_URL}/api/health`, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' }
+      });
+      console.log('Backend is awake and ready!');
+    } catch (healthError) {
+      console.warn('Backend health check failed, but continuing anyway:', healthError);
+    }
+    
+    // Update button to show actual registration process
+    submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Creating account...';
+    
     // Create abort controller for timeout
     appState.requestController = new AbortController();
     const timeoutId = setTimeout(() => appState.requestController.abort(), CONFIG.API_TIMEOUT);
