@@ -3,17 +3,243 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Courses - EduLearn</title>
+  <meta name=\"description\" content=\"Browse all courses on VNRLearn - Learn from industry experts with comprehensive online courses.\">
+  <meta name=\"keywords\" content=\"online courses, programming, data science, web development, mobile apps\">
+  <title>Courses - VNRLearn</title>
 
-  <link rel="stylesheet" href="./css/auth-styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel=\"stylesheet\" href=\"./css/auth-style.css\">
+  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\">
+  
+  <style>
+    /* Enhanced Courses Page Styling */
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+
+    .page-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .page-header h1 {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .page-header p {
+      font-size: 18px;
+      opacity: 0.95;
+      font-weight: 500;
+    }
+
+    .courses-page {
+      padding: 60px 20px;
+      background: white;
+      margin-top: 0;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .course-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid #e8eef7;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .course-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      border-color: #667eea;
+    }
+
+    .course-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1f2937;
+      margin: 20px 20px 10px;
+      line-height: 1.4;
+      min-height: 52px;
+    }
+
+    .course-card p {
+      color: #6b7280;
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 0 20px;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .course-card .btn {
+      margin: 20px;
+      width: calc(100% - 40px);
+      padding: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn.btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn.btn-primary:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn.btn-secondary {
+      background: #f0f4ff;
+      color: #667eea;
+      border: 2px solid #667eea;
+      margin-top: 0;
+    }
+
+    .btn.btn-secondary:hover {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn.btn-course {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      margin-top: 15px;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background: white;
+      margin: 5% auto;
+      padding: 30px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 650px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .close-btn {
+      color: #999;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close-btn:hover {
+      color: #333;
+    }
+
+    .modal-content h2 {
+      color: #1f2937;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      margin-top: 0;
+    }
+
+    .modal-content > p:first-of-type {
+      color: #6b7280;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 32px;
+      }
+
+      .page-header p {
+        font-size: 16px;
+      }
+
+      .courses-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .modal-content {
+        width: 95%;
+        margin: 20% auto;
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page-header h1 {
+        font-size: 24px;
+      }
+
+      .courses-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .course-card h3 {
+        font-size: 16px;
+      }
+
+      .modal-content {
+        width: 98%;
+        margin: 30% auto;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <header class="header">
   <div class="container">
     <div class="logo">
-      <i class="fas fa-graduation-cap"></i> <span>EduLearn</span>
+      <i class="fas fa-graduation-cap"></i> <span>VNRLearn</span>
     </div>
 
     <nav class="navbar">
@@ -439,15 +665,15 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="course-card">
       <h3>${course.title}</h3>
       <p>${course.description}</p>
-      <p style="font-size:13px;color:#6b7280;margin:6px 0;">
-        <i class="fas fa-layer-group"></i> ${course.category} •
-        <i class="fas fa-signal"></i> ${course.level} •
-        <i class="fas fa-clock"></i> ${course.duration} •
-        <i class="fas fa-list"></i> ${course.lessons} lessons •
-        <i class="fas fa-star" style="color:#f59e0b;"></i> ${course.rating}
+      <p style=\"font-size:13px;color:#6b7280;margin:12px 20px 0;padding:12px 0;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;\">
+        <span style=\"display:inline-block;margin-right:12px;\"><i class=\"fas fa-layer-group\"></i> ${course.category}</span>
+        <span style=\"display:inline-block;margin-right:12px;\"><i class=\"fas fa-signal\"></i> ${course.level}</span>
+        <span style=\"display:inline-block;margin-right:12px;\"><i class=\"fas fa-clock\"></i> ${course.duration}</span>
+        <span style=\"display:inline-block;margin-right:12px;\"><i class=\"fas fa-list\"></i> ${course.lessons}</span>
+        <span style=\"display:inline-block;\"><i class=\"fas fa-star\" style=\"color:#f59e0b;\"></i> ${course.rating}</span>
       </p>
-      <button class="btn btn-course" onclick="openCourseModal(${course.id})">View Details</button>
-      <button class="btn btn-secondary" onclick="openCourseModal(${course.id}, true)">▶ Preview</button>
+      <button class=\"btn btn-course\" onclick=\"openCourseModal(${course.id})\"><i class=\"fas fa-info-circle\"></i> View Details</button>
+      <button class=\"btn btn-secondary\" onclick=\"openCourseModal(${course.id}, true)\"><i class=\"fas fa-play\"></i> Preview</button>
     </div>
   `).join("");
 });
