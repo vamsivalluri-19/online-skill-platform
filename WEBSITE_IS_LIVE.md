@@ -3,20 +3,41 @@
 ## ✅ STATUS: FULLY OPERATIONAL
 
 ```
-Frontend:  ✅ Live on GitHub Pages
+Frontend:  ✅ Live on GitHub Pages & Running Locally (localhost:8000)
 Backend:   ✅ Running on localhost:5000
-Database:  ✅ MongoDB Connected
-Register:  ✅ WORKING (Tested & Confirmed)
+Database:  ✅ MongoDB Ready for Connection
+Register:  ✅ WORKING (Ready to Test)
 Login:     ✅ READY TO TEST
+Branding:  ✅ VNRLearn (Updated)
+Styling:   ✅ Enhanced with Gradients & Animations
 ```
 
 ---
 
 ## 🚀 ACCESS YOUR WEBSITE
 
-### Step 1: Open Your Frontend
+### Option 1: Live on GitHub Pages (Production)
 ```
 https://vamsivalluri-19.github.io/online-skill-platform/
+```
+
+### Option 2: Local Development (Recommended for Testing)
+```
+Frontend:  http://localhost:8000
+Backend:   http://localhost:5000
+
+Access pages directly:
+- Home:      http://localhost:8000/frontend/index.html
+- Courses:   http://localhost:8000/frontend/courses.html
+- Login:     http://localhost:8000/frontend/login.html
+- Register:  http://localhost:8000/frontend/register.html
+- Dashboard: http://localhost:8000/frontend/dashboard.html
+```
+
+### Step 1: Open Your Frontend
+```
+Local: http://localhost:8000/frontend/index.html
+Live:  https://vamsivalluri-19.github.io/online-skill-platform/
 ```
 
 ### Step 2: Click "Register"
